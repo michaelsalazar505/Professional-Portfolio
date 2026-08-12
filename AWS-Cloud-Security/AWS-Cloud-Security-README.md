@@ -1,549 +1,1125 @@
-# AWS Cloud Security Engineering Portfolio
+AWS Cloud Security Engineering Portfolio
+
+Portfolio Version: v1.45.0Projects Completed: 46Owner: Michael SalazarStatus: Active / In Progress
+
+Portfolio Summary
+
+This repository documents a hands-on AWS cloud security lab portfolio. The work progresses from account hardening and identity foundations into AWS Organizations, logging, delegated administration, threat detection, alerting, advanced IAM guardrails, cloud networking, Infrastructure as Code, workload-level network security, private compute administration, private AWS service access, SSH replacement with AWS Systems Manager Session Manager, auditable Session Manager logging, exposure-driven GuardDuty detection, static credential risk, EC2 Instance Metadata Service credential exposure, EC2 user data secret exposure, GuardDuty cryptomining detection, EBS snapshot-based cloud forensics, and S3 public access misconfiguration analysis.
+
+The first forty-four projects form a connected security foundation, now including controlled S3 public exposure through both legacy ACLs and modern resource-based bucket policies.
+
+Architecture Progression
+
+Project 01 - Secure AWS Management Account
+        |
+        v
+Project 02 - Secure IAM Administrator Account
+        |
+        v
+Project 03 - CloudTrail Management Event Logging
+        |
+        v
+Project 04 - CloudFormation SecurityAlerts Topic
+        |
+        v
+Project 05 - Billing Alerts and SNS Email
+        |
+        v
+Project 06 - EC2 IAM Role for Systems Manager
+        |
+        v
+Project 07 - CloudTrail S3 ReadWrite IAM Policy
+        |
+        v
+Project 08 - AWS Organizations Security OU and SecurityAudit Account
+        |
+        v
+Project 09 - Service Control Policy Guardrails
+        |
+        v
+Project 10 - Cross-Account Role Assumption and Logging Bucket
+        |
+        v
+Project 11 - Centralized Logging Bucket Policy
+        |
+        v
+Project 12 - Organization CloudTrail to SecurityAudit Bucket
+        |
+        v
+Project 13 - IAM Identity Center SSO and MFA Foundation
+        |
+        v
+Project 14 - AdministratorAccess Permission Set Assignment
+        |
+        v
+Project 15 - Enterprise AWS Organizations OU Structure
+        |
+        v
+Project 16 - SCP Target Rework and LogArchive Recovery
+        |
+        v
+Project 17 - RegionLockout SCP
+        |
+        v
+Project 18 - S3 Lifecycle Cost Control for CloudTrail Logs
+        |
+        v
+Project 19 - Button Up Organization Contacts and Workload OUs
+        |
+        v
+Project 20 - Delegated Administration for IAM Identity Center and CloudTrail
+        |
+        v
+Project 21 - Security Team Permission Sets in IAM Identity Center
+        |
+        v
+Project 22 - Multi-Region GuardDuty Delegated Administration
+        |
+        v
+Project 23 - Security Hub Central Configuration
+        |
+        v
+Project 24 - EventBridge Security Hub Alerts to SNS Email
+        |
+        v
+Project 25 - IAM Identity Center Manage Policies Permission Set
+        |
+        v
+Project 26 - IAM Identity Center Permissions Boundary
+        |
+        v
+Project 27 - Default VPC Exploration and Cleanup
+        |
+        v
+Project 28 - Custom VPC Public Subnets and Internet Gateway Routing
+        |
+        v
+Project 29 - Private Subnets and NAT Gateway Egress
+        |
+        v
+Project 30 - CloudFormation VPC Infrastructure as Code
+        |
+        v
+Project 31 - VPC Security Groups and Security Group References
+        |
+        v
+Project 32 - Private EC2 Instance with Session Manager
+        |
+        v
+Project 33 - Private Subnet Access with VPC Endpoints
+        |
+        v
+Project 34 - Session Manager Run As and CLI Access
+        |
+        v
+Project 35 - Session Manager S3 Logging
+        |
+        v
+Project 36 - GuardDuty Public SSH Exposure
+        |
+        v
+Project 37 - Access Key Exposure and Static Credentials
+        |
+        v
+Project 38 - IMDSv1 and IMDSv2 Metadata Credential Risk
+        |
+        v
+Project 39 - EC2 User Data Secret Exposure
+        |
+        v
+Project 40 - User Data Cryptomining GuardDuty Detection
+        |
+        v
+Project 41 - EBS Forensic Snapshot and Cross-Account Sharing
+        |
+        v
+Project 42 - Forensics Volume Snapshot Analysis
+        |
+        v
+Project 43 - S3 ACL Public Bucket Exposure
+        |
+        v
+Project 44 - S3 Misconfigured Bucket Policy Exposure
+        |
+        v
+Project 45 - S3 Resource Control Policy Prod Guardrail
+        |
+        v
+Project 46 - IAM Access Analyzer Delegated External Access
 
-> Building a secure AWS environment from the ground up through hands-on cloud security, administration, monitoring, and Infrastructure as Code projects.
+Completed Projects
 
-**Portfolio Version:** `v1.4.0`  
-**Projects Completed:** `5`  
-**Status:** Active  
-**Last Updated:** July 8, 2026  
+#
 
----
+Project
 
-## Overview
+Version
 
-Welcome to the AWS section of my IT Professional Portfolio.
+Status
 
-This portfolio documents hands-on projects completed in a personal AWS lab environment. The projects are designed to build practical experience in cloud administration, cloud security, Infrastructure as Code, monitoring, and technical documentation.
+Focus
 
-Rather than documenting each exercise as a click-by-click lab, every project is presented as a professional engineering case study. Each project explains:
+01
 
-- The problem being solved
-- Why the implementation matters
-- What was configured
-- How the implementation was validated
-- What security concepts were demonstrated
-- What I learned
-- What I would improve in a production environment
+Secure AWS Management Account
 
-The projects build on one another and document the gradual development of a secure AWS security baseline.
+v1.0.1
 
----
+Complete
 
-## Current Portfolio Progress
+Root account hardening, MFA, no root access keys
 
-| # | Project | Document Version | Status | Primary Focus |
-|---|---------|------------------|--------|---------------|
-| 01 | [Secure AWS Management Account](./01-Secure-AWS-Management-Account/) | `v1.0.1` | ✅ Complete | Root account security and MFA |
-| 02 | [Secure IAM Administrator](./02-Secure-IAM-Administrator/) | `v1.0.1` | ✅ Complete | IAM, privileged access, groups, MFA |
-| 03 | [CloudTrail Management Event Logging](./03-CloudTrail-Management-Event-Logging/) | `v1.0.1` | ✅ Complete | Audit logging and management-plane visibility |
-| 04 | [Multi-Region CloudFormation SecurityAlerts](./04-CloudFormation-SecurityAlerts/) | `v1.0.1` | ✅ Complete | Infrastructure as Code, SNS, multi-region deployment |
-| 05 | [Tiered Billing Alerts and Email Notifications](./05-Billing-Alerts-and-SNS-Email/) | `v1.0.0` | ✅ Complete | CloudWatch, billing monitoring, SNS, email alerting |
+02
 
----
+Secure IAM Administrator Account
 
-# Security Baseline Built So Far
+v1.0.1
 
-The first five projects form a connected security foundation.
+Complete
 
-```text
-Project 01
-Secure the AWS root identity
-        │
-        ▼
-Project 02
-Create a dedicated IAM administrator
-        │
-        ▼
-Project 03
-Enable management-plane audit logging
-        │
-        ▼
-Project 04
-Build a reusable SecurityAlerts notification foundation with IaC
-        │
-        ▼
-Project 05
-Send tiered billing alerts through SecurityAlerts to email
-```
+IAM admin user, Administrators group, MFA, no access keys
 
-This progression demonstrates more than isolated lab completion. It shows the incremental construction of a cloud environment with protected privileged access, audit visibility, repeatable infrastructure deployment, and operational alerting.
+03
 
----
+CloudTrail Management Event Logging
 
-# Completed Projects
+v1.0.1
 
-## Project 01 — Secure AWS Management Account
+Complete
 
-**Version:** `v1.0.1`
+Multi-region CloudTrail management event logging
 
-Created a dedicated AWS lab account and secured the root identity before deploying additional infrastructure.
+04
 
-### Implemented
+CloudFormation SecurityAlerts Topic
 
-- Strong root account password
-- Multi-Factor Authentication (MFA)
-- Verification that no root access keys were present
-- Dedicated account for isolated cloud security lab work
+v1.0.1
 
-### Skills Demonstrated
+Complete
 
-- AWS account administration
-- Root identity protection
-- Privileged credential security
-- MFA
-- Secure cloud environment preparation
+SNS topic deployment with CloudFormation
 
-### Why It Matters
+05
 
-The AWS root identity has unrestricted account-level privileges. Securing it first reduces the risk that a single compromised credential could lead to complete account takeover.
+Billing Alerts and SNS Email
 
----
+v1.0.0
 
-## Project 02 — Secure IAM Administrator
+Complete
 
-**Version:** `v1.0.1`
+Tiered billing alerts and email notification
 
-Created a dedicated administrative IAM user so routine administration no longer depended on the AWS root identity.
+06
 
-### Implemented
+EC2 IAM Role for Systems Manager
 
-- Administrators IAM group
-- AWS-managed `AdministratorAccess` policy
-- Dedicated IAM administrator user
-- Group-based permission assignment
-- Strong password
-- MFA
-- Verification that no access keys were present
+v1.0.0
 
-### Skills Demonstrated
+Complete
 
-- AWS IAM
-- Identity and Access Management
-- IAM groups
-- AWS managed policies
-- MFA
-- Privileged access management
-- Group-based authorization
+EC2 trust policy and SSM managed instance role
 
-### Why It Matters
+07
 
-Separating account ownership from routine administration reduces unnecessary root usage and creates a more manageable access model.
+CloudTrail S3 ReadWrite IAM Policy
 
----
+v1.0.0
 
-## Project 03 — CloudTrail Management Event Logging
+Complete
 
-**Version:** `v1.0.1`
+Customer-managed policy for CloudTrail S3 object access
 
-Configured AWS CloudTrail management-event logging to establish visibility into administrative and API activity.
+08
 
-### Implemented
+AWS Organizations Security OU and SecurityAudit Account
 
-- Management-event logging
-- Logging in `us-west-2`
-- Logging in `us-east-2`
-- Amazon S3 log delivery
-- Cost-conscious lab configuration without a customer-managed KMS key
+v1.0.0
 
-### Skills Demonstrated
+Complete
 
-- AWS CloudTrail
-- Amazon S3
-- Audit logging
-- Management-plane visibility
-- Multi-region administration
-- Cloud governance
-- Security monitoring foundations
+Organization, Security OU, and SecurityAudit member account
 
-### Why It Matters
+09
 
-Without management-plane telemetry, it is difficult to determine who changed a resource, which API action occurred, or when an account configuration was modified.
+Service Control Policy Guardrails
 
----
+v1.0.0
 
-## Project 04 — Multi-Region CloudFormation SecurityAlerts
+Complete
 
-**Version:** `v1.0.1`
+Root restriction and organization-leave prevention SCP
 
-Used AWS CloudFormation to deploy identically named `SecurityAlerts` Amazon SNS topics in two AWS regions.
+10
 
-### Implemented
+Cross-Account Role Assumption and Logging Bucket
 
-- AWS CloudFormation stack deployment
-- Declarative Infrastructure as Code template
-- `SecurityAlerts` SNS topic in `us-west-2`
-- `SecurityAlerts` SNS topic in `us-east-1`
-- Validation of `CREATE_COMPLETE` in both regions
-- Multi-region reuse of the same infrastructure definition
+v1.0.0
 
-### Skills Demonstrated
+Complete
 
-- AWS CloudFormation
-- Infrastructure as Code
-- Amazon SNS
-- Template review
-- Repeatable deployment
-- Multi-region provisioning
-- Declarative infrastructure
+OrganizationAccountAccessRole and centralized S3 bucket creation
 
-### Why It Matters
+11
 
-Infrastructure as Code provides a repeatable and reviewable way to build consistent infrastructure. The project also created the notification foundation used by later security monitoring projects.
+Centralized Logging Bucket Policy
 
----
+v1.0.0
 
-## Project 05 — Tiered Billing Alerts and Email Notifications
+Complete
 
-**Version:** `v1.0.0`
+Restricted CloudTrail bucket/resource policy
 
-Implemented tiered cost monitoring and linked CloudWatch billing alarms to the existing `SecurityAlerts` SNS topic.
+12
 
-### Implemented
+Organization CloudTrail to SecurityAudit Bucket
 
-- AWS Free Tier alerts
-- CloudWatch billing alerts
-- `$10` estimated-charge threshold
-- `$25` estimated-charge threshold
-- `$50` estimated-charge threshold
-- Billing alarms configured in `us-east-1`
-- All alarms linked to `SecurityAlerts`
-- Confirmed email subscription to the SNS topic
+v1.0.0
 
-### Skills Demonstrated
+Complete
 
-- Amazon CloudWatch
-- AWS Billing and Cost Management
-- Amazon SNS
-- CloudWatch alarms
-- Cost anomaly awareness
-- Notification routing
-- Email subscriptions
-- Detective security controls
+Organization trail redirected to centralized logging storage
 
-### Why It Matters
+13
 
-Unexpected cloud spending can indicate operational mistakes or suspicious resource usage. Tiered billing alerts create multiple opportunities to detect abnormal cost growth before it becomes a larger problem.
+IAM Identity Center SSO and MFA Foundation
 
----
+v1.0.0
 
-# AWS Services Used
+Complete
 
-The portfolio currently includes hands-on work with:
+IAM Identity Center, MFA, admin group, SSO user
 
-| Area | Services and Technologies |
-|------|---------------------------|
-| Identity | AWS IAM, MFA |
-| Logging | AWS CloudTrail |
-| Storage | Amazon S3 |
-| Infrastructure as Code | AWS CloudFormation |
-| Notifications | Amazon SNS |
-| Monitoring | Amazon CloudWatch |
-| Financial Monitoring | AWS Billing and Cost Management |
+14
 
----
+AdministratorAccess Permission Set Assignment
 
-# Regions Used
+v1.0.0
 
-| Region | Name | Projects |
-|--------|------|----------|
-| `us-west-2` | US West (Oregon) | CloudTrail, CloudFormation, SNS |
-| `us-east-1` | US East (N. Virginia) | CloudFormation, SNS, CloudWatch billing alarms |
-| `us-east-2` | US East (Ohio) | CloudTrail |
+Complete
 
----
+AdministratorAccess permission set and SSO admin access validation
 
-# Skills Developed
+15
 
-## Cloud Administration
+Enterprise AWS Organizations OU Structure
 
-- AWS account provisioning
-- Regional service configuration
-- Resource validation
-- AWS Management Console administration
+v1.0.0
 
-## Identity and Access Management
+Complete
 
-- Root identity protection
-- IAM users
-- IAM groups
-- AWS managed policies
-- MFA
-- Privileged access management
+Infrastructure, Workloads, Exceptions, Sandbox, Onboarding, Nursery, Suspended, IncidentResponse OUs
 
-## Logging and Monitoring
+16
 
-- CloudTrail management events
-- CloudWatch billing alarms
-- EstimatedCharges monitoring
-- Tiered alert thresholds
-- Audit visibility
+SCP Target Rework and LogArchive Recovery
 
-## Infrastructure as Code
+v1.0.0
 
-- CloudFormation stacks
-- Declarative templates
-- Template review
-- Repeatable deployment
-- Multi-region provisioning
+Complete
 
-## Security Operations
+OU guardrail repair, root recovery, LogArchive rename, SecurityAudit recreation
 
-- Detective security controls
-- Alert routing
-- SNS notification architecture
-- Email subscriptions
-- Cost anomaly awareness
+17
 
-## Documentation
+RegionLockout SCP
 
-- Technical case studies
-- Screenshot evidence
-- Architecture diagrams
-- Security analysis
-- Lessons learned
-- Production recommendations
-- Version history
+v1.0.0
 
----
+Complete
 
-# Documentation Standard
+Region restriction to approved regions and global-service exceptions
 
-Every project follows the same portfolio documentation standard.
+18
 
-Each project includes:
+S3 Lifecycle Cost Control for CloudTrail Logs
 
-1. Cover Page
-2. Executive Summary
-3. Business Problem
-4. Objectives
-5. Environment
-6. Architecture Diagram, when appropriate
-7. Implementation Summary
-8. Evidence and Screenshots
-9. Security Analysis
-10. Lessons Learned
-11. Production Improvements
-12. Skills Demonstrated
-13. Resume Bullet
-14. STAR Interview Story
-15. Version History
-16. References
+v1.0.0
 
-Every provided screenshot is embedded as project evidence, numbered, captioned, and explained.
+Complete
 
----
+90-day lifecycle expiration for lab cost control
 
-# Repository Structure
+19
 
-```text
+Button Up Organization Contacts and Workload OUs
+
+v1.0.0
+
+Complete
+
+Trusted access, alternate contacts, Prod/Non-Prod OUs, TestAccount1
+
+20
+
+Delegated Administration for IAM Identity Center and CloudTrail
+
+v1.0.0
+
+Complete
+
+IAM delegated admin for Identity Center and SecurityAudit delegated admin for CloudTrail
+
+21
+
+Security Team Permission Sets in IAM Identity Center
+
+v1.0.0
+
+Complete
+
+Security Administrators, IAM Administrators, ReadOnlyAccess, IdentityCenterAdmin, SecurityFullAdmin
+
+22
+
+Multi-Region GuardDuty Delegated Administration
+
+v1.0.0
+
+Complete
+
+GuardDuty in us-west-2 and us-east-1 with SecurityAudit delegated admin
+
+23
+
+Security Hub Central Configuration
+
+v1.0.0
+
+Complete
+
+Security Hub delegated admin, central configuration, standards disabled
+
+24
+
+EventBridge Security Hub Alerts to SNS Email
+
+v1.0.0
+
+Complete
+
+SecurityHubFindings rule to SecurityHubAlerts SNS email
+
+25
+
+IAM Identity Center Manage Policies Permission Set
+
+v1.0.0
+
+Complete
+
+Policy-management permissions for Identity Center administrators
+
+26
+
+IAM Identity Center Permissions Boundary
+
+v1.0.0
+
+Complete
+
+SSOPermissionBoundary and self-escalation control
+
+27
+
+Default VPC Exploration and Cleanup
+
+v1.0.0
+
+Complete
+
+Default VPC, subnets, route table, Internet Gateway, deletion after testing
+
+28
+
+Custom VPC Public Subnets and Internet Gateway Routing
+
+v1.0.0
+
+Complete
+
+CloudSLAW VPC, public subnets, Internet Gateway, default route
+
+29
+
+Private Subnets and NAT Gateway Egress
+
+v1.0.0
+
+Complete
+
+Private subnets, NAT Gateway, private route table, outbound-only Internet access, cleanup
+
+30
+
+CloudFormation VPC Infrastructure as Code
+
+v1.0.0
+
+Complete
+
+YAML template, full VPC stack, dependency flowchart, stack validation, stack deletion
+
+31
+
+VPC Security Groups and Security Group References
+
+v1.0.0
+
+Complete
+
+Database and Backup security groups, CIDR rules, NFS security-group reference, cleanup
+
+32
+
+Private EC2 Instance with Session Manager
+
+v1.0.0
+
+Complete
+
+Amazon Linux EC2, private subnet, SSMClient instance profile, Session Manager access, cleanup
+
+33
+
+Private Subnet Access with VPC Endpoints
+
+v1.0.0
+
+Complete
+
+Interface endpoints for ssm, ssmmessages, and ec2messages, private Session Manager access, cleanup
+
+34
+
+Session Manager Run As and CLI Access
+
+v1.0.0
+
+Complete
+
+Run As ec2-user, SLAW/SLAW2 instances, AWS CLI start-session, SSH replacement pattern
+
+35
+
+Session Manager S3 Logging
+
+v1.0.0
+
+Complete
+
+S3 session logging, SSMLogs inline policy, downloaded command log validation, cleanup
+
+36
+
+GuardDuty Public SSH Exposure
+
+v1.0.3
+
+Complete
+
+Public SSH exposure, GuardDuty finding validation, redacted alert evidence, stack cleanup
+
+37
+
+Access Key Exposure and Static Credentials
+
+v1.0.0
+
+Complete
+
+AKIA stack, IAM access key creation/deletion, exposed credentials in .aws profile, cleanup
+
+38
+
+IMDSv1 and IMDSv2 Metadata Credential Risk
+
+v1.0.0
+
+Complete
+
+IMDS stack, IMDSv1 credential retrieval, IMDSv2 token requirement, SSRF risk analysis, cleanup
+
+39
+
+EC2 User Data Secret Exposure
+
+v1.0.0
+
+Complete
+
+SLAW stack, dummy secrets in user data, IMDSv2 retrieval, CloudTrail sensitiveDataRemoved evidence, cleanup
+
+40
+
+User Data Cryptomining GuardDuty Detection
+
+v1.0.0
+
+Complete
+
+cloud-init callback to defunct mining domain, GuardDuty HIGH finding validation, cleanup
+
+41
+
+EBS Forensic Snapshot and Cross-Account Sharing
+
+v1.0.0
+
+Complete
+
+CSI stack, Hacked volume snapshot, CSI-Incident-1, shared with SecurityAudit
+
+42
+
+Forensics Volume Snapshot Analysis
+
+v1.0.0
+
+Complete
+
+SecurityAudit Forensics stack, create CSI volume from shared snapshot, attach and mount volume, recover embedded evidence
+
+43
+
+S3 ACL Public Bucket Exposure
+
+v1.0.0
+
+Complete
+
+Block Public Access disabled, ACLs enabled, Everyone List and Read permissions, Access Analyzer follow-up target
+
+44
+
+S3 Misconfigured Bucket Policy Exposure
+
+v1.0.0
+
+Complete
+
+Public ListBucket/GetObject through wildcard principal and 0.0.0.0/0 bucket-policy statements
+
+45
+
+S3 Resource Control Policy Prod Guardrail
+
+v1.0.0
+
+Complete - Remediation Pending
+
+Enabled RCPs, created S3 Classified Sensitive, attached to Prod OU, intentionally broken deny behavior
+
+46
+
+IAM Access Analyzer Delegated External Access
+
+v1.0.0
+
+Complete - Findings Review Pending
+
+SecurityAudit delegated admin, organization external analyzers, 17 active resources, email notification
+
+Latest Project - Project 46: IAM Access Analyzer Delegated External Access
+
+Delegated IAM Access Analyzer administration from the management account to SecurityAudit, then created organization-scoped external access analyzers in us-west-2 and us-east-1. The analyzer identified active external-access findings, including 17 resources in the captured resource-analysis view, and the existing Security Hub notification pipeline sent an email alert.
+
+Implemented
+
+Management-account Access Analyzer configuration
+
+SecurityAudit delegated administrator
+
+External access resource analysis
+
+Current organization zone of trust
+
+us-west-2 analyzer
+
+us-east-1 analyzer
+
+Active findings review
+
+17 resources with active findings in evidence
+
+Security Hub integration
+
+Email alert validation
+
+Data-perimeter detection foundation
+
+Why It Matters
+
+Access Analyzer identifies public and cross-account resource sharing before broad preventive controls are deployed. Delegated administration centralizes security operations outside the management account, while regional analyzers and Security Hub notifications provide continuing exposure visibility.
+
+AWS Services and Technologies Used
+
+Area
+
+Services and Technologies
+
+Identity
+
+AWS IAM, MFA, IAM Roles, AWS STS, IAM Identity Center, Instance Profiles
+
+Compute
+
+Amazon EC2, Amazon Linux, EC2 User Data, EC2 Instance Metadata Service
+
+Systems Management
+
+AWS Systems Manager Session Manager, AWS CLI Session Manager access
+
+Logging
+
+AWS CloudTrail, Session Manager S3 logging
+
+Storage
+
+Amazon S3, S3 ACLs, S3 Bucket Policies, S3 Block Public Access, S3 Object Ownership, Amazon EBS, EBS Volumes, EBS Snapshots
+
+Infrastructure as Code
+
+AWS CloudFormation, YAML
+
+Notifications
+
+Amazon SNS
+
+Monitoring
+
+Amazon CloudWatch
+
+Financial Monitoring
+
+AWS Billing and Cost Management
+
+Governance
+
+AWS Organizations, Service Control Policies, Resource Control Policies, AWS Account Management
+
+Threat Detection
+
+Amazon GuardDuty, AWS Security Hub, IAM Access Analyzer
+
+Eventing
+
+Amazon EventBridge
+
+Networking
+
+Amazon VPC, VPC Endpoints, AWS PrivateLink, Security Groups, NAT Gateway, Internet Gateway, Route Tables, Elastic IP, Network ACLs, DHCP Options
+
+Cloud Forensics
+
+Cross-account snapshot sharing, volume mounting, Linux file-system analysis
+
+Secrets Management
+
+AWS Secrets Manager and SSM Parameter Store recommended as production alternatives
+
+Regions Used
+
+Region
+
+Name
+
+Portfolio Usage
+
+us-west-2
+
+US West (Oregon)
+
+Primary lab region, CloudTrail, CloudFormation, SNS, GuardDuty, Security Hub, EventBridge, VPC, Security Groups, NAT Gateway, EC2, VPC Endpoints, Session Manager, S3 session logs, IMDS testing, user data testing, EBS snapshots, forensic volumes, S3 ACL testing
+
+us-east-1
+
+US East (N. Virginia)
+
+Billing alarms, CloudFormation, SNS, GuardDuty
+
+us-east-2
+
+US East (Ohio)
+
+CloudTrail
+
+Documentation Standard
+
+Each project PDF follows the same portfolio format: cover page, executive summary, business problem, objectives, environment, architecture/workflow diagram, implementation summary, evidence, security analysis, lessons learned, production improvements, skills, resume bullet, STAR story, version history, and references.
+
+Every provided screenshot is embedded as project evidence, numbered, captioned, and explained. Sensitive account identifiers, resource identifiers, access keys, secret access keys, session tokens, and real credentials are redacted where visible.
+
+Repository Structure
+
 AWS-Cloud-Security/
 │
 ├── README.md
 │
 ├── 01-Secure-AWS-Management-Account/
 │   ├── README.md
-│   ├── Project_01_Secure_AWS_Management_Account_v1.0.1.pdf
+│   ├── Project_01_*.pdf
 │   └── screenshots/
-│
-├── 02-Secure-IAM-Administrator/
+├── 02-Secure-IAM-Administrator-Account/
 │   ├── README.md
-│   ├── Project_02_AWS_IAM_Administrator_Account_v1.0.1.pdf
+│   ├── Project_02_*.pdf
 │   └── screenshots/
-│
 ├── 03-CloudTrail-Management-Event-Logging/
 │   ├── README.md
-│   ├── Project_03_AWS_CloudTrail_Multi_Region_Logging_v1.0.1.pdf
+│   ├── Project_03_*.pdf
 │   └── screenshots/
-│
-├── 04-CloudFormation-SecurityAlerts/
+├── 04-CloudFormation-SecurityAlerts-Topic/
 │   ├── README.md
-│   ├── Project_04_AWS_CloudFormation_SecurityAlerts_v1.0.1.pdf
+│   ├── Project_04_*.pdf
 │   └── screenshots/
-│
 ├── 05-Billing-Alerts-and-SNS-Email/
 │   ├── README.md
-│   ├── Project_05_AWS_Billing_Alerts_and_SNS_Email_v1.0.0.pdf
+│   ├── Project_05_*.pdf
+│   └── screenshots/
+├── 06-EC2-IAM-Role-for-Systems-Manager/
+│   ├── README.md
+│   ├── Project_06_*.pdf
+│   └── screenshots/
+├── 07-CloudTrail-S3-ReadWrite-IAM-Policy/
+│   ├── README.md
+│   ├── Project_07_*.pdf
+│   └── screenshots/
+├── 08-AWS-Organizations-Security-OU-and-SecurityAudit-Account/
+│   ├── README.md
+│   ├── Project_08_*.pdf
+│   └── screenshots/
+├── 09-Service-Control-Policy-Guardrails/
+│   ├── README.md
+│   ├── Project_09_*.pdf
+│   └── screenshots/
+├── 10-Cross-Account-Role-Assumption-and-Logging-Bucket/
+│   ├── README.md
+│   ├── Project_10_*.pdf
+│   └── screenshots/
+├── 11-Centralized-Logging-Bucket-Policy/
+│   ├── README.md
+│   ├── Project_11_*.pdf
+│   └── screenshots/
+├── 12-Organization-CloudTrail-to-SecurityAudit-Bucket/
+│   ├── README.md
+│   ├── Project_12_*.pdf
+│   └── screenshots/
+├── 13-IAM-Identity-Center-SSO-and-MFA-Foundation/
+│   ├── README.md
+│   ├── Project_13_*.pdf
+│   └── screenshots/
+├── 14-AdministratorAccess-Permission-Set-Assignment/
+│   ├── README.md
+│   ├── Project_14_*.pdf
+│   └── screenshots/
+├── 15-Enterprise-AWS-Organizations-OU-Structure/
+│   ├── README.md
+│   ├── Project_15_*.pdf
+│   └── screenshots/
+├── 16-SCP-Target-Rework-and-LogArchive-Recovery/
+│   ├── README.md
+│   ├── Project_16_*.pdf
+│   └── screenshots/
+├── 17-RegionLockout-SCP/
+│   ├── README.md
+│   ├── Project_17_*.pdf
+│   └── screenshots/
+├── 18-S3-Lifecycle-Cost-Control-for-CloudTrail-Logs/
+│   ├── README.md
+│   ├── Project_18_*.pdf
+│   └── screenshots/
+├── 19-Button-Up-Organization-Contacts-and-Workload-OUs/
+│   ├── README.md
+│   ├── Project_19_*.pdf
+│   └── screenshots/
+├── 20-Delegated-Administration-for-IAM-Identity-Center-and-CloudTrail/
+│   ├── README.md
+│   ├── Project_20_*.pdf
+│   └── screenshots/
+├── 21-Security-Team-Permission-Sets-in-IAM-Identity-Center/
+│   ├── README.md
+│   ├── Project_21_*.pdf
+│   └── screenshots/
+├── 22-Multi-Region-GuardDuty-Delegated-Administration/
+│   ├── README.md
+│   ├── Project_22_*.pdf
+│   └── screenshots/
+├── 23-Security-Hub-Central-Configuration/
+│   ├── README.md
+│   ├── Project_23_*.pdf
+│   └── screenshots/
+├── 24-EventBridge-Security-Hub-Alerts-to-SNS-Email/
+│   ├── README.md
+│   ├── Project_24_*.pdf
+│   └── screenshots/
+├── 25-IAM-Identity-Center-Manage-Policies-Permission-Set/
+│   ├── README.md
+│   ├── Project_25_*.pdf
+│   └── screenshots/
+├── 26-IAM-Identity-Center-Permissions-Boundary/
+│   ├── README.md
+│   ├── Project_26_*.pdf
+│   └── screenshots/
+├── 27-Default-VPC-Exploration-and-Cleanup/
+│   ├── README.md
+│   ├── Project_27_*.pdf
+│   └── screenshots/
+├── 28-Custom-VPC-Public-Subnets-and-Internet-Gateway-Routing/
+│   ├── README.md
+│   ├── Project_28_*.pdf
+│   └── screenshots/
+├── 29-Private-Subnets-and-NAT-Gateway-Egress/
+│   ├── README.md
+│   ├── Project_29_*.pdf
+│   └── screenshots/
+├── 30-CloudFormation-VPC-Infrastructure-as-Code/
+│   ├── README.md
+│   ├── Project_30_*.pdf
+│   └── screenshots/
+├── 31-VPC-Security-Groups-and-Security-Group-References/
+│   ├── README.md
+│   ├── Project_31_*.pdf
+│   └── screenshots/
+├── 32-Private-EC2-Instance-with-Session-Manager/
+│   ├── README.md
+│   ├── Project_32_*.pdf
+│   └── screenshots/
+├── 33-Private-Subnet-Access-with-VPC-Endpoints/
+│   ├── README.md
+│   ├── Project_33_*.pdf
+│   └── screenshots/
+├── 34-Session-Manager-Run-As-and-CLI-Access/
+│   ├── README.md
+│   ├── Project_34_*.pdf
+│   └── screenshots/
+├── 35-Session-Manager-S3-Logging/
+│   ├── README.md
+│   ├── Project_35_*.pdf
+│   └── screenshots/
+├── 36-GuardDuty-Public-SSH-Exposure/
+│   ├── README.md
+│   ├── Project_36_*.pdf
+│   └── screenshots/
+├── 37-Access-Key-Exposure-and-Static-Credentials/
+│   ├── README.md
+│   ├── Project_37_*.pdf
+│   └── screenshots/
+├── 38-IMDSv1-and-IMDSv2-Metadata-Credential-Risk/
+│   ├── README.md
+│   ├── Project_38_*.pdf
+│   └── screenshots/
+├── 39-EC2-User-Data-Secret-Exposure/
+│   ├── README.md
+│   ├── Project_39_*.pdf
+│   └── screenshots/
+├── 40-User-Data-Cryptomining-GuardDuty-Detection/
+│   ├── README.md
+│   ├── Project_40_*.pdf
+│   └── screenshots/
+├── 41-EBS-Forensic-Snapshot-and-Cross-Account-Sharing/
+│   ├── README.md
+│   ├── Project_41_*.pdf
+│   └── screenshots/
+├── 42-Forensics-Volume-Snapshot-Analysis/
+│   ├── README.md
+│   ├── Project_42_*.pdf
+│   └── screenshots/
+├── 43-S3-ACL-Public-Bucket-Exposure/
+│   ├── README.md
+│   ├── Project_43_*.pdf
+│   └── screenshots/
+├── 44-S3-Misconfigured-Bucket-Policy-Exposure/
+│   ├── README.md
+│   ├── Project_44_*.pdf
+│   └── screenshots/
+├── 45-S3-Resource-Control-Policy-Prod-Guardrail/
+│   ├── README.md
+│   ├── Project_45_*.pdf
+│   └── screenshots/
+├── 46-IAM-Access-Analyzer-Delegated-External-Access/
+│   ├── README.md
+│   ├── Project_46_*.pdf
 │   └── screenshots/
 │
 └── Resources/
-    ├── Templates/
-    ├── Diagrams/
-    └── Documentation-Standard/
-```
+    ├── Documentation-Standard.pdf
+    └── Diagrams/
 
----
+Portfolio Metrics
 
-# Portfolio Statistics
+Metric
 
-| Metric | Current |
-|--------|--------:|
-| Portfolio Version | `v1.4.0` |
-| Completed AWS Projects | `5` |
-| AWS Services Used | `7` |
-| AWS Regions Used | `3` |
-| Embedded Project Screenshots | `9` |
-| Architecture Diagrams | `3` |
-| Project PDFs | `5` |
-| Status | Active |
+Current Value
 
----
+Portfolio Version
 
-# Portfolio Version History
+v1.45.0
 
-## `v1.4.0` — Tiered Billing Monitoring and Notification Delivery
+Completed AWS Projects
 
-### Added
+46
 
-- Project 05 documentation
-- AWS Free Tier alert configuration
-- CloudWatch billing alert configuration
-- `$10`, `$25`, and `$50` thresholds
-- Integration with the `SecurityAlerts` SNS topic
-- Confirmed email notification subscription
-- Billing alert architecture documentation
+AWS Services / Technologies Used
 
----
+24
 
-## `v1.3.0` — Infrastructure as Code and Security Alert Foundation
+Embedded Project Screenshots
 
-### Added
+122
 
-- Project 04 documentation
-- AWS CloudFormation
-- Multi-region stack deployment
-- `SecurityAlerts` SNS topics in `us-west-2` and `us-east-1`
-- Infrastructure as Code template documentation
-- Multi-region architecture diagram
+Architecture Diagrams
 
----
+44
 
-## `v1.2.0` — Audit Logging Foundation
+Project PDFs
 
-### Added
+46
 
-- Project 03 documentation
-- AWS CloudTrail management-event logging
-- Amazon S3 log delivery
-- Multi-region logging configuration
-- Cloud audit and governance analysis
+Portfolio Version History
 
----
+v1.45.0 - IAM Access Analyzer Delegated External Access
 
-## `v1.1.0` — Delegated AWS Administration
+Added
 
-### Added
+Project 46 documentation
 
-- Project 02 documentation
-- Dedicated IAM administrator
-- Administrators IAM group
-- `AdministratorAccess` policy
-- MFA for privileged administration
-- Group-based permission management
+SecurityAudit delegated-administrator configuration
 
----
+Oregon and N. Virginia external access analyzers
 
-## `v1.0.0` — AWS Security Foundation Begins
+Current-organization zone of trust
 
-### Added
+Active finding evidence showing 17 resources
 
-- AWS portfolio initialized
-- Project 01 documentation
-- Dedicated AWS lab account
-- Root account password security
-- Root MFA
-- Verification that no root access keys were present
+Security Hub email-notification validation
 
----
+Data-perimeter detection and remediation planning
 
-# Roadmap
+v1.44.0 - S3 Resource Control Policy Prod Guardrail
 
-## Identity and Access
+Added
 
-- [x] Secure root account
-- [x] Create dedicated IAM administrator
-- [x] Protect privileged identities with MFA
-- [ ] IAM account alias and password policy
-- [ ] IAM Access Analyzer
-- [ ] IAM Identity Center
+Project 45 documentation
 
-## Logging and Monitoring
+Resource Control Policies enablement
 
-- [x] CloudTrail management-event logging
-- [x] CloudWatch billing alarms
-- [ ] CloudWatch log-based security alerts
-- [ ] AWS Config
-- [ ] Centralized logging
+S3 Classified Sensitive customer-managed RCP
 
-## Security Detection
+Direct Prod OU attachment evidence
 
-- [x] Billing anomaly warning thresholds
-- [x] SNS email notification delivery
-- [ ] Amazon GuardDuty
-- [ ] AWS Security Hub
-- [ ] Amazon Inspector
+Explicit-deny and data-perimeter analysis
 
-## Infrastructure as Code
+Intentionally broken policy behavior warning
 
-- [x] CloudFormation template deployment
-- [x] Multi-region stack deployment
-- [ ] CloudFormation change sets
-- [ ] CloudFormation StackSets
-- [ ] Terraform
+Future RCP remediation requirement
 
-## Networking and Compute
+v1.43.0 - S3 Misconfigured Bucket Policy Exposure
 
-- [ ] Amazon VPC
-- [ ] Security Groups
-- [ ] Network ACLs
-- [ ] Route Tables
-- [ ] Amazon EC2 security
-- [ ] AWS Systems Manager
+Added
 
-## Governance
+Project 44 documentation
 
-- [ ] AWS Organizations
-- [ ] Service Control Policies
-- [ ] Multi-account security architecture
+Wildcard-principal public bucket policy
 
----
+0.0.0.0/0 public IP condition analysis
 
-# Engineering Philosophy
+ListBucket and GetObject resource mapping
 
-Every project is approached as if it were being implemented in a professional environment.
+Placeholder ARN verification warning
 
-The focus is not only on **how** to configure an AWS service, but also on understanding:
+Access Analyzer and Block Public Access follow-up target
 
-- Why the control exists
-- What problem it solves
-- What risks it helps reduce
-- How the service integrates with the rest of the environment
-- How the implementation would be improved for production
+v1.42.0 - S3 ACL Public Bucket Exposure
 
----
+Added
 
-# Continuous Improvement
+Project 43 documentation
 
-This is a living engineering portfolio.
+S3 Block Public Access disabled evidence
 
-As new projects are completed, this README will be updated with:
+S3 ACL public List and Read evidence
 
-- New projects
-- New AWS services
-- New skills
-- Updated architecture diagrams
-- Additional evidence
-- Version history
-- Resume accomplishments
-- Interview examples
+Object Ownership / ACL risk analysis
 
-The goal is to maintain a long-term record of practical cloud engineering and security development.
+Follow-up dependency for Access Analyzer and Block Public Access labs
 
----
+Public S3 exposure remediation recommendations
 
-# Disclaimer
+Roadmap
 
-This repository documents work completed in a personal AWS lab environment for educational and professional development purposes.
+Secure root and IAM administrator access
 
-Sensitive information such as account identifiers, email addresses, ARNs, stack identifiers, operation identifiers, and other confidential values is redacted before publication.
+Enable centralized audit logging
 
-Where projects are inspired by structured training, the implementation evidence, analysis, architecture diagrams, lessons learned, and portfolio documentation are presented as my own record of the work I completed and the concepts I learned.
+Build AWS Organizations and security OUs
+
+Create organization-level guardrails with SCPs
+
+Configure IAM Identity Center and delegated administration
+
+Add GuardDuty and Security Hub foundations
+
+Route Security Hub findings to SNS email with EventBridge
+
+Add IAM policy-management permissions for Identity Center administrators
+
+Protect IdentityCenterAdministration with a permissions boundary
+
+Explore and delete the default VPC
+
+Build a custom VPC with public subnets and Internet Gateway routing
+
+Add private subnets and NAT Gateway egress
+
+Recreate network with CloudFormation
+
+Create VPC security groups and security group references
+
+Launch private EC2 instance with Session Manager
+
+Add VPC endpoints for private Systems Manager access
+
+Configure Session Manager Run As and CLI access
+
+Enable Session Manager S3 logging
+
+Validate GuardDuty SSH brute-force finding
+
+Explore access key exposure and static credential risk
+
+Compare IMDSv1 and IMDSv2 metadata credential exposure
+
+Explore EC2 user data secret exposure
+
+Simulate user-data cryptomining behavior and validate GuardDuty
+
+Create and share forensic EBS snapshot
+
+Attach forensic volume and analyze mounted snapshot evidence
+
+Create controlled public S3 ACL exposure
+
+Create controlled public S3 bucket-policy exposure
+
+Enable RCPs and attach S3 Classified Sensitive to Prod OU
+
+Correct the intentionally broken S3 RCP condition
+
+Enable IAM Access Analyzer for organization external access detection
+
+Review and remediate Access Analyzer findings
+
+Re-enable and validate S3 Block Public Access remediation
+
+Add snapshot-sharing prevention guardrails
+
+Add organization-wide IMDSv2 enforcement guardrails
+
+Add centralized logging account delivery
+
+Add VPC Flow Logs
+
+Add incident-response automation
+
+Disclaimer
+
+This is a personal AWS lab portfolio. Some decisions are intentionally cost-controlled for a lab environment and are documented separately from production recommendations. Some projects intentionally create unsafe configurations in empty, controlled lab resources to validate detection and prevention controls.
