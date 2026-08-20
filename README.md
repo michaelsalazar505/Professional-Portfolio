@@ -22,7 +22,7 @@ Current Focus
 
 AWS Cloud Security Engineering
 
-49
+50
 
 Multi-account security, detection, governance, networking, forensics, data protection, and security automation
 
@@ -34,7 +34,7 @@ Hyper-V, Windows Server 2025, Active Directory, DNS, OU design, identity lifecyc
 
 Total Documented Technical Projects
 
-53
+54
 
 Expanding enterprise administration, automation, security engineering, and incident-response capabilities
 
@@ -78,7 +78,9 @@ GuardDuty detection validation through controlled security simulations
 
 EBS snapshot acquisition and cross-account forensic analysis
 
-CloudFormation and YAML Infrastructure as Code
+CloudFormation, CloudFormation StackSets, and YAML Infrastructure as Code
+
+Organization-wide IAM role deployment for cross-account EventBridge forwarding
 
 Windows Infrastructure and Administration
 
@@ -162,9 +164,9 @@ Centralized findings, alert routing, external-access detection, and controlled d
 
 Security Automation
 
-Multi-region SecurityAutomation EventBridge buses
+Multi-region SecurityAutomation EventBridge buses and organization-wide StackSets
 
-Cross-account event ingestion and a foundation for automated remediation
+Cross-account event ingestion, delegated automation administration, and repeatable security-role deployment
 
 Cloud Forensics
 
@@ -255,6 +257,8 @@ Amazon VPC
 AWS Systems Manager
 
 AWS CloudFormation
+
+AWS CloudFormation StackSets
 
 AWS CloudTrail
 
