@@ -1,6 +1,6 @@
 AWS Cloud Security Engineering Portfolio
 
-Projects Completed: 50
+Projects Completed: 51
 Owner: Michael Salazar
 Status: Active / In Progress
 
@@ -8,7 +8,7 @@ Portfolio Summary
 
 This repository documents a hands-on AWS cloud security lab portfolio. The work progresses from account hardening and identity foundations into AWS Organizations, logging, delegated administration, threat detection, alerting, advanced IAM guardrails, cloud networking, Infrastructure as Code, workload-level network security, private compute administration, private AWS service access, SSH replacement with AWS Systems Manager Session Manager, auditable Session Manager logging, exposure-driven GuardDuty detection, static credential risk, EC2 Instance Metadata Service credential exposure, EC2 user data secret exposure, GuardDuty cryptomining detection, EBS snapshot-based cloud forensics, and S3 public access misconfiguration analysis.
 
-The first fifty projects form a connected security foundation, now extending the multi-region security automation architecture with organization-wide CloudFormation StackSets and a reusable EventBridge forwarding IAM role.
+The first fifty-one projects form a connected security foundation, now forwarding selected S3 CloudTrail configuration events from the production OU into centralized multi-region SecurityAutomation event buses.
 
 Architecture Progression
 
@@ -160,6 +160,9 @@ Project 49 - EventBridge Security Automation and Broken RCP Replacement
         |
         v
 Project 50 - CloudFormation StackSets Security Event Forwarder Role
+        |
+        v
+Project 51 - StackSets and EventBridge S3 Security Triggers
 
 Completed Projects
 
@@ -571,43 +574,53 @@ Complete
 
 Delegated StackSets administration, service-managed organization deployment, SecurityEventForwarder IAM role
 
-Latest Project - Project 50: CloudFormation StackSets Security Event Forwarder Role
+51
 
-Enabled CloudFormation StackSets trusted access from the management account, delegated StackSets administration to SecurityOperations, and created the service-managed SecOpsEventForwarderRole StackSet targeting the AWS Organization. The StackSet deploys the SecurityEventForwarder IAM role used by Amazon EventBridge to publish events to the centralized SecurityAutomation buses.
+StackSets and EventBridge S3 Security Triggers
+
+Complete - Event Validation Pending
+
+Production1, Prod OU deployment, multi-region S3 event forwarding, current CreateBucket/TagResource/UntagResource coverage
+
+Latest Project - Project 51: StackSets and EventBridge S3 Security Triggers
+
+Created a new AWS account named Production1, moved it into the Prod OU, and deployed the service-managed SecOpsEventForwarder StackSet from SecurityOperations to the Prod OU in us-west-2 and us-east-1.
+
+The locally maintained YAML template was updated for current S3 behavior by adding CreateBucket, TagResource, and UntagResource while retaining the original bucket-tagging, bucket-policy, and Block Public Access events.
 
 Implemented
 
-CloudFormation StackSets trusted access
+Production1 AWS member account
 
-SecurityOperations delegated administrator
+Prod OU placement
 
-Service-managed permissions
+Service-managed CloudFormation StackSet
 
-Organization-root deployment target
+Prod OU targeting by OU ID
 
-Automatic deployment
-
-Delete stacks on account removal
+us-west-2 deployment
 
 us-east-1 deployment
 
-Parameterized SecurityEventBusAccountId
+s3-bucket-security-monitor EventBridge rule
 
-SecurityEventForwarder IAM role
+CloudTrail S3 API event matching
 
-EventBridge service trust
+Cross-account forwarding to SecurityAutomation
 
-events:PutEvents to SecurityAutomation in us-east-1 and us-west-2
+Existing SecurityEventForwarder IAM role
 
-Active StackSet validation
+Added CreateBucket
 
-Evidence Note
+Added TagResource
 
-The deployment review screenshot records Maximum concurrent accounts = 100, Failure tolerance = 99, Region concurrency = SEQUENTIAL, and STRICT_FAILURE_TOLERANCE.
+Added UntagResource
+
+Automatic deployment for future Prod OU accounts
 
 Why It Matters
 
-The StackSet turns the SecurityAutomation design into an organization-wide bootstrap capability. Member accounts can now receive a consistent IAM role for future EventBridge forwarding rules without manual per-account role creation, while delegated administration keeps routine StackSet operations out of the management account.
+This project connects the production OU to the centralized security automation platform. Relevant S3 configuration changes can now be forwarded in near real time to SecurityOperations, where later automation can evaluate sensitive-bucket access and enforce the intended data-perimeter invariant.
 
 AWS Services and Technologies Used
 
@@ -661,7 +674,7 @@ Amazon GuardDuty, AWS Security Hub, IAM Access Analyzer
 
 Eventing
 
-Amazon EventBridge, cross-account event forwarding
+Amazon EventBridge, cross-account event forwarding, CloudTrail-driven S3 security triggers
 
 Networking
 
@@ -705,7 +718,75 @@ Documentation Standard
 
 Each project PDF follows the same portfolio format: cover page, executive summary, business problem, objectives, environment, architecture/workflow diagram, implementation summary, evidence, security analysis, lessons learned, production improvements, skills, resume bullet, STAR story, version history, and references.
 
-Every provided screenshot is embedded as project evidence, numbered, captioned, and explained. Sensitive account identifiers, resource identifiers, access keys, secret access keys, session tokens, and real credentials are redacted where visible.
+Every provided screenshot is embedded as project evidence, numbered, captioned, and explained. Sensitive account identifiers, resource identifiers, access keys, secret access keys, session tokens, and real credentials are redacted where visible. Public-release PDFs are reviewed before publication so unnecessary account and resource metadata is removed while retaining the technical evidence needed to demonstrate the implementation.
+
+Public Release Sanitization
+
+A PDF-only public-release sanitization review was completed on September 2, 2026. The review focused on credentials, AWS account identifiers, AWS Organizations identifiers, subscription metadata, and unique AWS resource identifiers visible in both document text and embedded screenshots.
+
+The following projects received sanitization-only patch releases:
+
+Project
+
+Public Release
+
+Sanitization Update
+
+11
+
+v1.0.1
+
+Removed the AWS account ID embedded in the centralized logging bucket name from document text and evidence
+
+16
+
+v1.0.1
+
+Removed visible AWS Organizations OU identifiers
+
+22
+
+v1.0.1
+
+Removed AWS account and GuardDuty finding/resource identifiers
+
+24
+
+v1.0.1
+
+Removed remaining SNS subscription-specific identifier data
+
+27
+
+v1.0.1
+
+Removed VPC, subnet, route-table, Internet Gateway, DHCP, and related resource identifiers
+
+28
+
+v1.0.1
+
+Removed the CloudSLAW VPC identifier from subnet-creation evidence
+
+30
+
+v1.0.1
+
+Removed the VPC ID and AWS Owner/Account ID from final VPC evidence
+
+33
+
+v1.0.1
+
+Removed the remaining EC2 instance identifier from private SSM evidence
+
+36
+
+v1.0.4
+
+Removed remaining EC2 instance and security-group identifiers while retaining the previously sanitized alert evidence
+
+These releases are sanitization-only revisions. Project architecture, implementation steps, validation results, lessons learned, and security conclusions were not changed.
 
 Portfolio Metrics
 
@@ -715,7 +796,7 @@ Current Value
 
 Completed AWS Projects
 
-50
+51
 
 AWS Services / Technologies Used
 
@@ -723,107 +804,15 @@ AWS Services / Technologies Used
 
 Embedded Project Screenshots
 
-137
+141
 
 Architecture Diagrams
 
-48
+49
 
 Project PDFs
 
-50
-
-Roadmap
-
-Secure root and IAM administrator access
-
-Enable centralized audit logging
-
-Build AWS Organizations and security OUs
-
-Create organization-level guardrails with SCPs
-
-Configure IAM Identity Center and delegated administration
-
-Add GuardDuty and Security Hub foundations
-
-Route Security Hub findings to SNS email with EventBridge
-
-Add IAM policy-management permissions for Identity Center administrators
-
-Protect IdentityCenterAdministration with a permissions boundary
-
-Explore and delete the default VPC
-
-Build a custom VPC with public subnets and Internet Gateway routing
-
-Add private subnets and NAT Gateway egress
-
-Recreate network with CloudFormation
-
-Create VPC security groups and security group references
-
-Launch private EC2 instance with Session Manager
-
-Add VPC endpoints for private Systems Manager access
-
-Configure Session Manager Run As and CLI access
-
-Enable Session Manager S3 logging
-
-Validate GuardDuty SSH brute-force finding
-
-Explore access key exposure and static credential risk
-
-Compare IMDSv1 and IMDSv2 metadata credential exposure
-
-Explore EC2 user data secret exposure
-
-Simulate user-data cryptomining behavior and validate GuardDuty
-
-Create and share forensic EBS snapshot
-
-Attach forensic volume and analyze mounted snapshot evidence
-
-Create controlled public S3 ACL exposure
-
-Create controlled public S3 bucket-policy exposure
-
-Enable RCPs and attach S3 Classified Sensitive to Prod OU
-
-Remove the intentionally broken S3 RCP and replace it with an automation-guardrail foundation
-
-Enable IAM Access Analyzer for organization external access detection
-
-Apply S3 Block Public Access controls
-
-Validate updated Access Analyzer findings
-
-Review and remediate remaining Access Analyzer findings
-
-Re-enable and validate S3 Block Public Access remediation
-
-Add snapshot-sharing prevention guardrails
-
-Add organization-wide IMDSv2 enforcement guardrails
-
-Re-run the EC2 policy status report after enforcement
-
-Add centralized logging account delivery
-
-Add VPC Flow Logs
-
-Create multi-region SecurityAutomation EventBridge buses
-
-Forward organization S3 and CloudTrail events into SecurityAutomation
-
-Build Lambda autoremediation for sensitive S3 buckets
-
-Deploy organization-wide EventBridge forwarding role with StackSets
-
-Deploy automation rules and remediation components with StackSets
-
-Add incident-response automation
+51
 
 Disclaimer
 
