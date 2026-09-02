@@ -22,19 +22,19 @@ Current Focus
 
 AWS Cloud Security Engineering
 
-50
+51
 
 Multi-account security, detection, governance, networking, forensics, data protection, and security automation
 
 Windows Infrastructure and Administration
 
-4
+8
 
-Hyper-V, Windows Server 2025, Active Directory, DNS, OU design, identity lifecycle, AGDLP, and least privilege
+Hyper-V, Windows Server 2025, Active Directory, DNS, domain joins, file services, Group Policy, Windows LAPS, and account auditing
 
 Total Documented Technical Projects
 
-54
+59
 
 Expanding enterprise administration, automation, security engineering, and incident-response capabilities
 
@@ -62,7 +62,7 @@ IAM Access Analyzer organization-wide external-access detection
 
 EventBridge and SNS security alerting
 
-Multi-region SecurityAutomation EventBridge buses for future autoremediation
+Multi-region SecurityAutomation EventBridge buses and Prod OU S3 security-event forwarding
 
 S3 ACL, bucket-policy, and Block Public Access testing
 
@@ -81,6 +81,8 @@ EBS snapshot acquisition and cross-account forensic analysis
 CloudFormation, CloudFormation StackSets, and YAML Infrastructure as Code
 
 Organization-wide IAM role deployment for cross-account EventBridge forwarding
+
+Prod OU StackSet deployment of multi-region S3 CloudTrail security-trigger rules
 
 Windows Infrastructure and Administration
 
@@ -142,6 +144,48 @@ Controlled account offboarding
 
 PowerShell validation
 
+Domain Join and Computer Account Management
+
+Static IPv4 and Active Directory DNS troubleshooting
+
+Windows Server and Windows 11 domain joins
+
+Computer-account placement and lifecycle management
+
+Secure-channel and domain-authentication validation
+
+File Server and Departmental Permissions
+
+Dedicated NTFS data volume and departmental folder structure
+
+AGDLP-based NTFS authorization
+
+SMB departmental share with access-based enumeration
+
+Authorized and denied access validation
+
+Group Policy Management and Departmental Drive Mapping
+
+Workstation security baseline through Group Policy
+
+Firewall, inactivity, Guest-account, and logon-auditing controls
+
+Group Policy Preferences departmental drive mapping
+
+Item-level targeting and GPResult validation
+
+Windows Account Security, Windows LAPS, and Account Auditing
+
+Domain password and account-lockout policy hardening
+
+Encrypted Windows LAPS deployment for servers and workstations
+
+Least-privilege LAPS recovery delegation
+
+Advanced domain-controller auditing
+
+Controlled lockout investigation and recovery using Events 4740 and 4767
+
 Featured Engineering Work
 
 Area
@@ -164,9 +208,9 @@ Centralized findings, alert routing, external-access detection, and controlled d
 
 Security Automation
 
-Multi-region SecurityAutomation EventBridge buses and organization-wide StackSets
+Multi-region SecurityAutomation EventBridge buses, organization-wide forwarding roles, and Prod OU S3 trigger StackSets
 
-Cross-account event ingestion, delegated automation administration, and repeatable security-role deployment
+Cross-account event ingestion, delegated automation administration, current S3 API monitoring, and repeatable security-rule deployment
 
 Cloud Forensics
 
@@ -180,11 +224,11 @@ Custom VPC and CloudFormation networking projects
 
 Public/private subnet design, NAT, Internet gateways, endpoints, security groups, NACLs, and repeatable deployment
 
-Windows Identity
+Windows Identity and Security
 
-Active Directory forest, OU, and identity administration
+Active Directory, Group Policy, Windows LAPS, and account auditing
 
-AD DS, DNS, directory architecture, AGDLP, administrative separation, and lifecycle management
+AD DS, DNS, AGDLP, domain joins, policy enforcement, encrypted local-admin credential management, and authentication-event investigation
 
 Virtualization
 
@@ -215,6 +259,14 @@ Active Directory Users and Computers
 DNS
 
 Group Policy administration
+
+Windows LAPS
+
+Windows file services and SMB shares
+
+NTFS permission administration
+
+Advanced Windows account and authentication auditing
 
 Hyper-V
 
@@ -460,9 +512,7 @@ CompTIA CySA+ preparation
 
 Windows Server enterprise administration
 
-Group Policy and administrative delegation
-
-File services and NTFS/share permission design
+Advanced Group Policy and administrative delegation
 
 Windows event collection and monitoring
 
@@ -515,6 +565,8 @@ STAR interview example
 References
 
 Sensitive identifiers, credentials, account information, and other unnecessary details are redacted before evidence is included in the portfolio.
+
+A public-release sanitization review was completed on September 2, 2026 for the AWS project PDFs. Corrected releases were issued for Projects 11, 16, 22, 24, 27, 28, 30, 33, and 36 after removing unnecessary AWS account, organization, subscription, and resource identifiers. The technical implementation and project conclusions were unchanged.
 
 Engineering Approach
 
